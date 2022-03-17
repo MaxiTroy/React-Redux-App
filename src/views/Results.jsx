@@ -1,14 +1,18 @@
 import React from "react";
+import Loading from "../components/Loading";
 import { useGetMoviesByTitleQuery } from "../redux/api/movies";
 import EmptyMovie from "../assets/empty-movie.png";
 import { useParams } from "react-router-dom";
 
 const Results = () => {
   const { title } = useParams();
-  const { data, error, isLoading } = useGetMoviesByTitleQuery(title);
+  const { data, error, isLoading, isFetching } =
+    useGetMoviesByTitleQuery(title);
   return (
     <div className="flex flex-row">
-      <div className="w-3/5"></div>
+      <div className="w-3/5 h-screen overflow-y-auto px-10">
+        {isLoading && isFetching && <Loading />}
+      </div>
       <div className="w-2/5">
         <img
           src={EmptyMovie}
