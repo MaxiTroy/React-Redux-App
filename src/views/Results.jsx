@@ -7,13 +7,24 @@ import List from "../components/List";
 
 const Results = () => {
   const { title } = useParams();
-  const { data, error, isLoading, isFetching } =
+  const { data, error, isLoading, isFetching, isSuccess } =
     useGetMoviesByTitleQuery(title);
+
+  //Utilizando la logica fuera del return
+  const renderContent = () => {
+    if (error) {
+      return <h3>Ha ocurrido un herror en la busqueda de tu pelicula</h3>;
+    } else if (isLoading || isFetching) {
+      return <Loading />;
+    } else if (isSuccess && data?.Search) {
+      return <List data={data?.Search} />;
+    }
+  };
 
   return (
     <div className="flex flex-row">
       <div className="w-3/5 h-screen overflow-y-auto px-10">
-        {isLoading && isFetching ? <Loading /> : <List data={data?.Search} />}
+        {renderContent()}
       </div>
       <div className="w-2/5">
         <img
