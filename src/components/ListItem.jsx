@@ -1,6 +1,9 @@
 import React from "react";
 
-const ListItem = ({ imdbID, Poster, Title }) => {
+const ListItem = ({ imdbID, Poster, Title, onClickListItem }) => {
+  const handleClick = () => {
+    onClickListItem(imdbID);
+  };
   return (
     <div
       key={imdbID}
@@ -16,6 +19,7 @@ const ListItem = ({ imdbID, Poster, Title }) => {
           <button
             className="border-2 border-special-red rounded-md w-48 h-10 
           text-xl text-special-red hover:bg-special-red hover:text-white"
+            onClick={handleClick}
           >
             Ver Mas
           </button>

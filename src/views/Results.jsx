@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import { useGetMoviesByTitleQuery } from "../redux/api/movies";
 import EmptyMovie from "../assets/empty-movie.png";
@@ -6,9 +7,14 @@ import { useParams } from "react-router-dom";
 import List from "../components/List";
 
 const Results = () => {
+  const navigate = useNavigate();
   const { title } = useParams();
   const { data, error, isLoading, isFetching, isSuccess } =
     useGetMoviesByTitleQuery(title);
+
+  const handleClickItemListItem = (movieId) => {
+    navigate(`/detail/${movieId}`);
+  };
 
   //Utilizando la logica fuera del return
   const renderContent = () => {
@@ -17,7 +23,9 @@ const Results = () => {
     } else if (isLoading || isFetching) {
       return <Loading />;
     } else if (isSuccess && data?.Search) {
-      return <List data={data?.Search} />;
+      return (
+        <List data={data?.Search} onClickListItem={handleClickItemListItem} />
+      );
     }
   };
 
