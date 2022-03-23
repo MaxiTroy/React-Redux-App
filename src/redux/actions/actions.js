@@ -19,7 +19,6 @@ export const fetchMovieById = (movieId) => async (dispatch) => {
       headers: Headers,
     });
     const data = await response.json();
-    console.log(data);
     dispatch(successFetchMovieById({ data }));
   } catch (error) {
     dispatch(errorFetchMovieById({ error }));
