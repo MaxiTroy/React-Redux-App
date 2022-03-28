@@ -21,7 +21,7 @@ const Results = () => {
     if (error) {
       return <h3>Ha ocurrido un herror en la busqueda de tu pelicula</h3>;
     } else if (isLoading || isFetching) {
-      return <Loading />;
+      return <Loading message={"Buscando Peliculas..."} />;
     } else if (isSuccess && data?.Search) {
       return (
         <List data={data?.Search} onClickListItem={handleClickItemListItem} />
