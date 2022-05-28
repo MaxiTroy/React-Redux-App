@@ -19,19 +19,11 @@ const DetailSpecifications = ({
       <p className="text-left">{`${synopsis}`}</p>
       <div className="flex flex-row my-1">
         <span className="font-bold mr-1">Genero:</span>
-        {generos.map((item, index) => (
-          <span key={index} className="mr-1">
-            {`${item}${index !== generos.length - 1 ? "," : ""}`}
-          </span>
-        ))}
+        <span className="mr-1">{generos}</span>
       </div>
       <div className="felx flex-row my-1 flex-wrap">
         <span className="font-bold mr-1">Cast:</span>
-        {cast.map((item, index) => (
-          <span key={index} className="mr-1">
-            {`${item}${index !== generos.length - 1 ? "," : ""}`}
-          </span>
-        ))}
+        <span className="mr-1">{cast}</span>
       </div>
     </>
   );
